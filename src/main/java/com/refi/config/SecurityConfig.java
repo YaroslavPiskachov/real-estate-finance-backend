@@ -1,4 +1,4 @@
-package com.java.refi.config;
+package com.refi.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
