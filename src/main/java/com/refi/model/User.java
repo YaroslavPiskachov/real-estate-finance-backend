@@ -1,10 +1,15 @@
 package com.refi.model;
 
+import com.refi.model.documents.KycDocument;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -47,4 +52,15 @@ public class User {
 
     @Column(name = "oauth_id")
     private String oauthId;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<KycDocument> documents;
 }
