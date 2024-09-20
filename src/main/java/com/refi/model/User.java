@@ -1,13 +1,10 @@
-package com.java.model;
+package com.refi.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.hibernate.annotations.Type;
-
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -30,7 +27,6 @@ public class User {
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
-    @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
     private String profileInfo;
 
@@ -43,7 +39,6 @@ public class User {
     @Column(name = "mfa_secret")
     private String mfaSecret;
 
-    @Type(type = "jsonb")
     @Column(name = "mfa_backup_codes", columnDefinition = "jsonb")
     private String mfaBackupCodes;
 
