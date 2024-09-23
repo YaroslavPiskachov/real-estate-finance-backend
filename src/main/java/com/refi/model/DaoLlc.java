@@ -32,6 +32,7 @@ public class DaoLlc {
     @Column(nullable = false)
     private Instant creationDate;
 
-    @OneToMany(mappedBy = "daoLlc", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "dao_llc_id")
     private List<LlcDocument> documents;
 }

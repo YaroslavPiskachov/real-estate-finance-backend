@@ -34,9 +34,11 @@ public class Property {
     @Column(nullable = false)
     private String status;
 
-    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "property_id")
     private Set<Image> images = new HashSet<>();
 
-    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "property_id")
     private Set<PropertyDocument> documents = new HashSet<>();
 }

@@ -13,8 +13,6 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest loginRequest) {
-        String email = loginRequest.email();
-        String password = loginRequest.password();
-        return userService.login(email, password);
+        return userService.login(loginRequest);
     }
 }
