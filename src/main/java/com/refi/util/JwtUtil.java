@@ -12,11 +12,13 @@ import java.util.List;
 @Component
 public class JwtUtil {
 
-    @Value("${security.jwt.secret}")
-    private final String secretKey = "yourSecretKey";
+    private final String secretKey;
+    private final long expiration;
 
-    @Value("${security.jwt.expiration}")
-    private final long expiration = 3600000; // 1h
+    public JwtUtil(@Value("${security.jwt.secret}") String secretKey, @Value("${security.jwt.expiration}") long expiration) {
+        this.secretKey = secretKey;
+        this.expiration = expiration;
+    }
 
     public String createToken(String username, List<String> roles) {
         Claims claims = Jwts.claims().setSubject(username);
@@ -34,10 +36,6 @@ public class JwtUtil {
 
     public String getUsername(String token) {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
-    }
-
-    public List<String> getRoles(String token) {
-        return (List<String>) Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("roles");
     }
 
     public boolean validateToken(String token) {
