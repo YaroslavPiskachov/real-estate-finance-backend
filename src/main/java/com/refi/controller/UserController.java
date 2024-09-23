@@ -12,7 +12,9 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String password) {
+    public String login(@RequestBody LoginRequest loginRequest) {
+        String email = loginRequest.email();
+        String password = loginRequest.password();
         return userService.login(email, password);
     }
 }
