@@ -2,6 +2,7 @@ package com.refi.controller;
 
 import com.refi.service.UserService;
 import lombok.RequiredArgsConstructor;
+import com.refi.dto.LoginRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
